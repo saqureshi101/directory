@@ -10,6 +10,7 @@ class PlacesController < ApplicationController
   # GET /places/1
   # GET /places/1.json
   def show
+     @review = Review.new 
   end
 
   # GET /places/new
@@ -71,4 +72,13 @@ class PlacesController < ApplicationController
     def place_params
       params.require(:place).permit(:name, :address, :description, :phone, :website)
     end
+     private 
+
+  def set_review
+    @review = Review.find(params[:id])  
+  end
+
+  def review_params
+    params.require(:review).permit(:content, :place_id)
+  end
 end
