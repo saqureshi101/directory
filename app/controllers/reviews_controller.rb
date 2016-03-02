@@ -9,7 +9,7 @@ before_action :authenticate_user!
   	end
 
   def create
-    @review = current_user.review.new(review_params)
+    @review = current_user.reviews.new(review_params)
 
     respond_to do |format|
       if @review.save
@@ -18,8 +18,7 @@ before_action :authenticate_user!
         
       else
         format.html { render :new }
-        
-      end
+			end
     end
   end
 
@@ -27,8 +26,7 @@ before_action :authenticate_user!
     respond_to do |format|
       if @review.update(review_params)
 
-        format.html { redirect_to place_path(@review.place), notice: 'Review was successfully updated.' }
-        
+         format.html { redirect_to place_path(@review.place), notice: 'Review was successfully updated.' }
       else
         format.html { render :edit }
         
